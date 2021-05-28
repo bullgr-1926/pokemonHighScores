@@ -3,6 +3,15 @@ const express = require("express");
 const PokemonHighScoresRouter = express.Router();
 PokemonHighScoresRouter.use(express.urlencoded({ extended: true }));
 
+PokemonHighScoresRouter.get("/", (req, res) => {
+  res.send(`Welcome to our Pokemon Leaderboard API
+  Instructions:
+  Get the leaderboard: /game/leaderboard
+  Post a new leaderboard entry: /game/save
+  Clear the leaderboard: game/leaderboard_clear
+  `);
+});
+
 PokemonHighScoresRouter.get("/game/leaderboard", (req, res) => {
   PokemonHighScores.find()
     .then((highScores) => res.json(highScores))
